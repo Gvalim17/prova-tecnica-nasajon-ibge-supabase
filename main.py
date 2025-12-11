@@ -68,7 +68,7 @@ def normalize_name(name: str) -> str:
     if not isinstance(name, str):
         return ""
 
-    # separo letra e acento (ex.: "a" com til vira "a" + "~")
+    # separo letra e acento
     nfkd = unicodedata.normalize("NFKD", name)
 
     # removo os caracteres que sao so acento
@@ -100,7 +100,6 @@ class IbgeIndex:
         self.municipios = municipios
 
         # dicionario que agrupa municipios pelo nome normalizado
-        # exemplo: "santo andre" -> [municipio de SP, municipio de outro estado, etc]
         self.name_to_municipios: Dict[str, List[Dict[str, Any]]] = defaultdict(list)
 
         # lista com todos os nomes normalizados, eu uso isso no fuzzy matching
@@ -119,7 +118,7 @@ class IbgeIndex:
     def _choose_preferred_municipio(self, lista: List[Dict[str, Any]]) -> Dict[str, Any]:
         """
         quando existe mais de um municipio com o mesmo nome normalizado
-        (tipo "santo andre"), eu preciso escolher um deles
+        tipo santo andre, eu preciso escolher um deles
 
         aqui eu usei uma logica simples:
         - tento priorizar municipios da regiao Sudeste
@@ -160,11 +159,11 @@ class IbgeIndex:
                 return "OK", lista[0]
             else:
                 # se tem mais de um municipio com o mesmo nome
-                # em vez de marcar como ambiguo eu escolho um "preferido"
+                # em vez de marcar como ambiguo eu escolho um preferido
                 escolhido = self._choose_preferred_municipio(lista)
                 return "OK", escolhido
 
-        # 2) tento match APROXIMADO (fuzzy) pra lidar com erro de digitacao
+        # 2) tento match aproximado (fuzzy) pra lidar com erro de digitacao
         candidates = difflib.get_close_matches(
             norm_input,
             self.normalized_names,
@@ -277,7 +276,7 @@ def processar_csv(ibge_index: IbgeIndex):
             try:
                 populacao_input = int(row["populacao"])
             except ValueError:
-                # se a populacao vier zoada eu coloco 0 pra nao quebrar o programa
+                # se a populacao vier errada eu coloco 0 pra nao quebrar o programa
                 populacao_input = 0
 
             status = "NAO_ENCONTRADO"
