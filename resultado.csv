@@ -1,0 +1,11 @@
+municipio_input,populacao_input,municipio_ibge,uf,regiao,id_ibge,status
+Niteroi,515317,Niterói,RJ,Sudeste,3303302,OK
+Sao Gonçalo,1091737,São Gonçalo,RJ,Sudeste,3304904,OK
+Sao Paulo,12396372,São Paulo,SP,Sudeste,3550308,OK
+Belo Horzionte,2530701,Belo Horizonte,MG,Sudeste,3106200,OK
+Florianopolis,516524,Florianópolis,SC,Sul,4205407,OK
+Santo Andre,723889,Santo André,SP,Sudeste,3547809,OK
+Santoo Andre,700000,,,,,NAO_ENCONTRADO
+Rio de Janeiro,6718903,Rio de Janeiro,RJ,Sudeste,3304557,OK
+Curitba,1963726,Curitiba,PR,Sul,4106902,OK
+Brasilia,3094325,Brasília,DF,Centro-Oeste,5300108,OK
